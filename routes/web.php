@@ -17,6 +17,8 @@ Route::group(['auth', 'verified'], function(){
     Route::get('request-form',[\App\Http\Controllers\RequestFormController::class,'index'])->name('request-form');
     Route::get('users',[\App\Http\Controllers\UserController::class,'index'])->name('users');
     Route::get('req-cert',[\App\Http\Controllers\FormController::class,'index'])->name('certificates');
+    Route::post('request-cert',[\App\Http\Controllers\RequestFormController::class,'store'])->name('request-form.store');
+    
 
 });
 

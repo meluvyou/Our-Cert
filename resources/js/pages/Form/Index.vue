@@ -7,18 +7,27 @@ import { Label } from '@/components/ui/label';
 import AuthBase from '@/layouts/AuthLayout.vue';
 import { Head, useForm } from '@inertiajs/vue3';
 import { LoaderCircle } from 'lucide-vue-next';
-
-const form = useForm({
-    name: '',
+import { reactive } from 'vue';
+import axios from 'axios';
+const form = reactive({
+    first_name: '',
     email: '',
     password: '',
     password_confirmation: '',
 });
 
+
+
 const submit = () => {
-    form.post(route('register'), {
-        onFinish: () => form.reset('password', 'password_confirmation'),
-    });
+    axios.post('/request-cert', form)
+        .then(response => {
+            console.log(response.data);
+            // Handle success response
+        })
+        .catch(error => {
+            console.error(error);
+            // Handle error response
+        });
 };
 </script>
 
@@ -43,6 +52,7 @@ const submit = () => {
                             <div>
                                 <label class="block text-sm font-medium text-gray-700">Full Name</label>
                                 <input type="text"
+                                v-model="form.first_name"
                                     class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm px-3 py-2 focus:ring-blue-500 focus:border-blue-500" />
                             </div>
 
