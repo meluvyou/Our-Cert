@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('request_cert', function (Blueprint $table) {
 
             $table->bigIncrements('id');
-            $table->string('first_name');
-            $table->string('last_name');
-            $table->string('middle_name');
-            $table->string('email');
+            $table->string('first_name,',15);
+            $table->string('last_name',15);
+            $table->string('middle_name',15);
+            $table->string('email',);
             $table->string('phone');
             $table->string('address');
             $table->string('city');
