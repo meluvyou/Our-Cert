@@ -40,7 +40,7 @@ const submit = () => {
             <div class="min-h-screen bg-gray-100 p-8">
                 <div class="max-w-4xl mx-auto bg-white shadow-md rounded-lg p-8">
                     <h2 class="text-2xl font-semibold text-gray-800 mb-2">Request Form</h2>
-                    <p class="text-gray-500 mb-6">Enter your details below for </p>
+                    <p class="text-gray-500 mb-6">Enter your details below for your request certificate. </p>
 
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                         <div class="md:col-span-1">
