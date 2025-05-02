@@ -14,6 +14,26 @@ const mainNavItems: NavItem[] = [
         href: '/dashboard',
         icon: LayoutGrid,
     },
+    {
+        title: 'Users',
+        href: '/users',
+        icon: LayoutGrid,
+    },
+    {
+        title: 'Roles',
+        href: '/roles',
+        icon: LayoutGrid,
+    },
+    {
+        title: 'Permissions',
+        href: '/permissions',
+        icon: LayoutGrid,
+    },
+    {
+        title: 'Request Form',
+        href: '/request-form',
+        icon: LayoutGrid,
+    },
 ];
 
 const footerNavItems: NavItem[] = [

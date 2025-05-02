@@ -8,7 +8,6 @@ interface Props {
     user: User;
     showEmail?: boolean;
 }
-
 const props = withDefaults(defineProps<Props>(), {
     showEmail: false,
 });
