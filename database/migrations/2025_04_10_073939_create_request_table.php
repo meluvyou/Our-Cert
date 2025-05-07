@@ -11,24 +11,24 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('request_cert', function (Blueprint $table) {
+        Schema::create('request_certs', function (Blueprint $table) {
 
             $table->bigIncrements('id');
-            $table->string('first_name,',15);
-            $table->string('middle_name',15);
-            $table->string('last_name',15);
-            $table->string('suffix',15);
-            $table->string('email',25);
-            $table->string('purok',15);
-            $table->string('barangay',25);
-            $table->string('city',25);
-            $table->string('province',25);
-            $table->string('date_of_birth',15);
-            $table->string('contact_number',11);
-            $table->string('request_type',20);
-            $table->integer('civilstatus')->default(0);
-            $table->integer('status')->default(0);
-            $table->string('request_purpose',50);
+            $table->string('first_name',15)->nullable();
+            $table->string('middle_name',15)->nullable();
+            $table->string('last_name',15)->nullable();
+            $table->string('suffix',15)->nullable();
+            $table->string('email',25)->nullable();
+            $table->string('purok',15)->nullable();
+            $table->string('barangay',25)->nullable();
+            $table->string('city',25)->nullable();
+            $table->string('province',25)->nullable();
+            $table->string('date_of_birth',15)->nullable();
+            $table->string('contact_number',11)->nullable();
+            $table->integer('request_type')->nullable();
+            $table->integer('civilstatus')->default(0)->nullable();
+            $table->integer('status')->default(0)->nullable();
+            $table->string('request_purpose',50)->nullable();
             $table->timestamps();
         });
     }
@@ -38,6 +38,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('request_cert');
+        Schema::dropIfExists('request_certs');
     }
 };
