@@ -51,10 +51,11 @@ class CertController extends Controller
         $requestCert->status = $request->input('status') ?? 0; // Default to 0 if not provided
         $requestCert->request_purpose = $request->input('request_purpose');
         // Save the request to the database
-        $requestCert->create();
-
+        $requestCert->save();
         
-
-        return redirect()->route('certificates')->with('success', 'Certificate request submitted successfully.');
+        return response()->json([
+            'success' => true,
+            'message' => 'Certificate request submitted successfully.',
+        ]);
     }
 }
