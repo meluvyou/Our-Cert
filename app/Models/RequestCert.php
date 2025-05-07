@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 class RequestCert extends Model
 {
-    protected $table = 'request_cert';
+    protected $table = 'request_certs';
     protected $primaryKey = 'id';
     protected $fillable = [
         'first_name',
