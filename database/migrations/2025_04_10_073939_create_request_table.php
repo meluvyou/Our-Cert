@@ -25,7 +25,7 @@ return new class extends Migration
             $table->string('province',25);
             $table->string('date_of_birth',15);
             $table->string('contact_number',11);
-            $table->string('request_type',20);
+            $table->integer('request_type');
             $table->integer('civilstatus')->default(0);
             $table->integer('status')->default(0);
             $table->string('request_purpose',50);

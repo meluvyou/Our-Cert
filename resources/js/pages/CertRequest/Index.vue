@@ -7,35 +7,50 @@ import { Label } from '@/components/ui/label';
 import AuthBase from '@/layouts/AuthLayout.vue';
 import { Head, useForm } from '@inertiajs/vue3';
 import { LoaderCircle } from 'lucide-vue-next';
-import { reactive } from 'vue';
+import { reactive,ref } from 'vue';
 import axios from 'axios';
+
+const props = defineProps({ appSettings: Object});
 const form = reactive({
     first_name: '',
     middle_name: '',
     last_name: '',
     suffix: '',
     purok: '',
-    barangay: '',
-    city: '',
-    province: '',
+    barangay: props.appSettings.barangay,
+    city: props.appSettings.city,
+    province: props.appSettings.province,
     date_of_birth: '',
     contact_number: '',
     request_type: '',
-    attachment: null,
     email: '',
     password: '',
     password_confirmation: '',
 });
 
+const isValidateInformation = ref(false);
+const success = ref(false);
 
 
+const fileInput=ref(null);
+
+const handleFileUpload = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+        const formData = new FormData();
+        formData.append('file', file);
+        // You can now send this formData to your server
+        console.log('File uploaded:', file);
+    }
+};
 const submit = () => {
-    axios.post('/request-cert', form)
+    axios.post('/request-cert-save', form)
         .then(response => {
-            console.log(response.data);
-            // Handle success response
+            success.value = true;
         })
         .catch(error => {
+            success.value = false;
+            console.error('Error submitting form:', error);
             console.error(error);
             // Handle error response
         });
@@ -47,7 +62,16 @@ const submit = () => {
 
     <Head title="Register" />
 
-    <form @submit.prevent="submit">
+    <div v-if="success" class="min-h-screen bg-gray-100 p-8">
+        <div class="max-w-4xl mx-auto bg-white shadow-md rounded-lg p-8">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-2">Request Certificate</h2>
+            <p class="text-gray-500 mb-6">Your request has been submitted successfully.</p>
+            <p class="text-gray-500 mb-6">Please check your email for further instructions.</p>
+        </div>
+
+    </div>
+
+    <form @submit.prevent="submit" v-if="!success">
         <div class="min-h-screen bg-gray-100 p-8">
             <div class="max-w-4xl mx-auto bg-white shadow-md rounded-lg p-8">
                 <h2 class="text-2xl font-semibold text-gray-800  b-2">Request Form</h2>
@@ -63,93 +87,92 @@ const submit = () => {
                         <div>
                             <label class="block text-sm font-medium text-gray-700">First Name</label>
                             <input type="text" v-model="form.first_name"
-                                class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm px-3 py-2 focus:ring-blue-500 focus:border-blue-500" />
+                                class="mt-1 block w-full border border-gray-300 rounded-md text-black shadow-sm px-3 py-2 focus:ring-blue-500 focus:border-blue-500" />
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-gray-700">Middle Name</label>
                             <input type="text" v-model="form.middle_name"
-                                class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm px-3 py-2 focus:ring-blue-500 focus:border-blue-500" />
+                                class="mt-1 block w-full border border-gray-300 rounded-md text-black shadow-sm px-3 py-2 focus:ring-blue-500 focus:border-blue-500" />
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-gray-700">Last Name</label>
                             <input type="text" v-model="form.last_name"
-                                class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm px-3 py-2 focus:ring-blue-500 focus:border-blue-500" />
+                                class="mt-1 block w-full border border-gray-300 rounded-md text-black shadow-sm px-3 py-2 focus:ring-blue-500 focus:border-blue-500" />
 
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-gray-700">Suffix</label>
                             <input type="text" v-model="form.suffix"
-                                class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm px-3 py-2 focus:ring-blue-500 focus:border-blue-500" />
+                                class="mt-1 block w-full text-black  border border-gray-300 rounded-md shadow-sm px-3 py-2 focus:ring-blue-500 focus:border-blue-500" />
 
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-gray-700">Email Address</label>
-                            <input type="email" placeholder="email@domain.com"
-                                class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm px-3 py-2 focus:ring-blue-500 focus:border-blue-500" />
+                            <input type="email" v-model="form.email" placeholder="email@domain.com"
+                                class="mt-1 block w-full text-black  border border-gray-300 rounded-md shadow-sm px-3 py-2 focus:ring-blue-500 focus:border-blue-500" />
                         </div>
 
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div>
                                 <label class="block text-sm font-medium text-gray-700">Purok</label>
                                 <input type="text" v-model="form.purok"
-                                    class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm px-3 py-2" />
+                                    class="mt-1 block w-full border text-black  border-gray-300 rounded-md shadow-sm px-3 py-2" />
                             </div>
                             <div>
                                 <label class="block text-sm font-medium text-gray-700">Barangay</label>
                                 <input type="text" v-model="form.barangay"
-                                    class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm px-3 py-2" />
+                                    class="mt-1 block w-full border text-black  border-gray-300 rounded-md shadow-sm px-3 py-2" />
                             </div>
                         </div>
 
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                             <div>
                                 <label class="block text-sm font-medium text-gray-700">City</label>
-                                <select class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm px-3 py-2">
-                                    <option value="">City</option>
-                                </select>
+                                <input type="text" v-model="form.city"
+                                    class="mt-1 text-black  block w-full border border-gray-300 rounded-md shadow-sm px-3 py-2" />
                             </div>
                             <div>
                                 <label class="block text-sm font-medium text-gray-700">Province</label>
-                                <select class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm px-3 py-2">
-                                    <option value="">Province</option>
-                                </select>
+                                <input type="text" v-model="form.province"
+                                    class="mt-1 text-black  block w-full border border-gray-300 rounded-md shadow-sm px-3 py-2" />
                             </div>
                             <div>
                                 <label class="block text-sm font-medium text-gray-700">Date of Birth</label>
-                                <input type="text" v-model="form.date_of_birth"
-                                    class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm px-3 py-2" />
+                                <input type="date" v-model="form.date_of_birth"
+                                    class="mt-1 text-black  block w-full border border-gray-300 rounded-md shadow-sm px-3 py-2" />
                             </div>
                             <div>
                                 <label class="block text-sm font-medium text-gray-700">Contact_number</label>
                                 <input type="text" v-model="form.contact_number"
-                                    class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm px-3 py-2" />
+                                    class="mt-1 block w-full text-black  border border-gray-300 rounded-md shadow-sm px-3 py-2" />
                             </div>
                             <div>
                                 <label class="block text-sm font-medium text-gray-700">Request Type</label>
                                 <select v-model="form.request_type"
-                                    class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm px-3 py-2">
-                                    <option value="">Select Request Type</option>
-                                    <option value="certification">Certification</option>
-                                    <option value="clearance">Clearance</option>
-                                    <option value="other">Other</option>
+                                    class="mt-1 block w-full text-black  border border-gray-300 rounded-md shadow-sm px-3 py-2">
+                                    <option value="0">Select Request Type</option>
+                                    <option value="1">Certification</option>
+                                    <option value="2">Clearance</option>
+                                    <option value="3">Other</option>
                                 </select>
                             </div>
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-gray-700">Attachment</label>
-                            <input img="picture" min="1" max="5" accept="image/*"
+                            <input  type="file" ref="fileInput" @change="handleFileUpload"
                                 class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm px-3 py-2" />
                         </div>
 
                         <div class="flex items-center space-x-2">
-                            <input id="billing" type="checkbox" class="h-4 w-4 text-blue-600 border-gray-300 rounded" />
+                            <input id="billing" v-model="isValidateInformation" type="checkbox" class="h-4 w-4 text-blue-600 border-gray-300 rounded" />
                             <label for="billing" class="text-sm text-gray-700">All the information that are provided
                                 are
-                                true.</label>
+                                true.</label> 
                         </div>
                         <div class="pt-4">
-                            <button type="submit"
-                                class="bg-blue-600 text-white px-6 py-2 rounded-md shadow hover:bg-blue-700 transition">
+                            <button type="submit" :disabled="!isValidateInformation"
+                                :class="isValidateInformation ? 'bg-blue-600 text-white' :'bg-gray-400 text-gray-200'"
+                                class="text-white px-6 py-2 rounded-md shadow-md transition">
                                 Submit
                             </button>
                         </div>
