@@ -5,6 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BARANGAY CLEARANCE</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            position: relative;
+        }
+
+        /* Add watermark using a pseudo-element */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('/images/Gui-Logo.png'); /* Path to your logo */
+            background-size: 300px; /* Adjust size as needed */
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0.1; /* Adjust transparency (0.1 = very transparent, 1 = opaque) */
+            z-index: -1; /* Ensure it stays behind the content */
+            pointer-events: none; /* Prevent interaction with the watermark */
+        }
+    </style>
 </head>
 <body class="bg-gray-100 flex items-center justify-center min-h-screen">
     <div class="bg-white border-4 border-gray-300 shadow-lg max-w-4xl mx-auto p-10 rounded-lg">
