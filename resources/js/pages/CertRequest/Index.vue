@@ -29,6 +29,9 @@ const form = reactive({
     email: '',
     password: '',
     password_confirmation: '',
+    inBryg: '',
+    isValidateInformation: false,
+    success: false,
 });
 
 const isValidateInformation = ref(false);
@@ -172,6 +175,11 @@ const submit = () => {
                             <div>
                                 <label class="block text-sm font-medium text-gray-700">Status</label>
                                 <input type="text" v-model="form.status"
+                                    class="mt-1 block w-full text-black  border border-gray-300 rounded-md shadow-sm px-3 py-2" />
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700">Month/Yrs in Barangay</label>
+                                <input type="text" v-model="form.inBryg"
                                     class="mt-1 block w-full text-black  border border-gray-300 rounded-md shadow-sm px-3 py-2" />
                             </div>
                         </div>
