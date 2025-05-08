@@ -23,6 +23,9 @@ const form = reactive({
     date_of_birth: '',
     contact_number: '',
     request_type: '',
+    request_purpose: '',
+    civilstatus: '',
+    status:'',
     email: '',
     password: '',
     password_confirmation: '',
@@ -150,11 +153,26 @@ const submit = () => {
                                 <label class="block text-sm font-medium text-gray-700">Request Type</label>
                                 <select v-model="form.request_type"
                                     class="mt-1 block w-full text-black  border border-gray-300 rounded-md shadow-sm px-3 py-2">
-                                    <option value="0">Select Request Type</option>
-                                    <option value="1">Certification</option>
+                                    <option value="0">Certificate</option>
+                                    <option value="1">Indigency</option>
                                     <option value="2">Clearance</option>
                                     <option value="3">Other</option>
                                 </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700">Request purpose</label>
+                                <input type="text" v-model="form.request_purpose"
+                                    class="mt-1 block w-full text-black  border border-gray-300 rounded-md shadow-sm px-3 py-2" />
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700">Civil Status</label>
+                                <input type="text" v-model="form.civilstatus"
+                                    class="mt-1 block w-full text-black  border border-gray-300 rounded-md shadow-sm px-3 py-2" />
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700">Status</label>
+                                <input type="text" v-model="form.status"
+                                    class="mt-1 block w-full text-black  border border-gray-300 rounded-md shadow-sm px-3 py-2" />
                             </div>
                         </div>
                         <div>
