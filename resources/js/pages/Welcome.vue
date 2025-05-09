@@ -35,7 +35,7 @@ const page = usePage();
                     <h1 class="text-4xl md:text-5xl font-bold leading-tight mb-4">Barangay Certification Online Request
                         System</h1>
                     <Link :href="route('certificates')"
-                        class="solid-block square-m border border-[#28140035] px-5 py-1.5 leading-normal text-[#1c2b15] hover:border-[#1915014a] dark:border-[#3E3E3A] dark:text-[#EDEDEC] dark:hover:border-[#62605b]">
+                        class=" bg-white text-blue solid-block square-m border border-[#28140035] px-5 py-1.5 leading-normal text-black hover:border-[#1915014a] dark:border-[#3E3E3A] dark:hover:border-[#62605b]">
                     Request Certificate
                     </Link>
                 </div>
