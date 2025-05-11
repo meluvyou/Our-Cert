@@ -17,6 +17,12 @@ Route::group(['auth', 'verified'], function(){
     })->name('dashboard');
 
     Route::get('users',[\App\Http\Controllers\UserController::class,'index'])->name('users');
+
+
+    Route::get('/sample-crud',[\App\Http\Controllers\SampleCrudController::class,'index'])->name('sample-crud');
+    Route::get('/sample-crud/create',[\App\Http\Controllers\SampleCrudController::class,'create'])->name('sample-crud.create');
+    Route::get('/sample-crud/edit/{id}',[\App\Http\Controllers\SampleCrudController::class,'edit'])->name('sample-crud.edit');
+    Route::post('/sample-crud/store',[\App\Http\Controllers\SampleCrudController::class,'store'])->name('sample-crud.store');
   
     
 

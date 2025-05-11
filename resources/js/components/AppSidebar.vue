@@ -34,6 +34,12 @@ const mainNavItems: NavItem[] = [
         href: '/request-form',
         icon: LayoutGrid,
     },
+    {
+        title: 'Sample Crud',
+        href: '/sample-crud',
+        icon: LayoutGrid,
+    },
+
 ];
 
 const footerNavItems: NavItem[] = [
