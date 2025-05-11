@@ -28,6 +28,7 @@ return new class extends Migration
             $table->integer('request_type')->nullable();
             $table->string('request_purpose',50)->nullable();
             $table->integer('civilstatus')->default(0)->nullable();
+            $table->integer('inBryg')->nullable();
             $table->integer('status')->default(0)->nullable();
             $table->integer('attachment')->default(0)->nullable();
             $table->timestamps();
