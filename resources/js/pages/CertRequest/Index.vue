@@ -29,7 +29,8 @@ const form = reactive({
     email: '',
     password: '',
     password_confirmation: '',
-    inBryg: '',
+    months_years_in_brgy: '',
+    date_of_claim: '',
     isValidateInformation: false,
     success: false,
 });
@@ -80,8 +81,7 @@ const submit = () => {
     <form @submit.prevent="submit" v-if="!success">
         <div class="min-h-screen bg-gray-100 p-8">
             <div class="max-w-4xl mx-auto bg-white shadow-md rounded-lg p-8">
-                <h2 class="text-2xl font-semibold text-gray-800  b-2">Request Form</h2>
-                <p class="text-gray-500 mb-6">Enter your details below for your request certificate. </p>
+                <h2 class="text-2xl font-semibold text-gray-800 text-center mb-2"> Barangay Certificate Request Form</h2>
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <div class="md:col-span-3">
@@ -89,7 +89,7 @@ const submit = () => {
                         <p class="text-gray-500 mb-4">Please fill in your personal information.</p>
                     </div>
 
-                    <div class="md:col-span-2 space-y-4">
+                    <div class="md:col-span-3 space-y-4">
                         <div>
                             <label class="block text-sm font-medium text-gray-700">First Name</label>
                             <input type="text" v-model="form.first_name"
@@ -148,12 +148,12 @@ const submit = () => {
                                     class="mt-1 text-black  block w-full border border-gray-300 rounded-md shadow-sm px-3 py-2" />
                             </div>
                             <div>
-                                <label class="block text-sm font-medium text-gray-700">Contact_number</label>
+                                <label class="block text-sm font-medium text-gray-700">Contact Number</label>
                                 <input type="text" v-model="form.contact_number"
                                     class="mt-1 block w-full text-black  border border-gray-300 rounded-md shadow-sm px-3 py-2" />
                             </div>
                             <div>
-                                <label class="block text-sm font-medium text-gray-700">Request Type</label>
+                                <label class="block text-sm font-medium text-gray-700">Type of Certificate</label>
                                 <select v-model="form.request_type"
                                     class="mt-1 block w-full text-black  border border-gray-300 rounded-md shadow-sm px-3 py-2">
                                     <option value="0">Certificate</option>
@@ -163,7 +163,7 @@ const submit = () => {
                                 </select>
                             </div>
                             <div>
-                                <label class="block text-sm font-medium text-gray-700">Request purpose</label>
+                                <label class="block text-sm font-medium text-gray-700">Purpose of Request</label>
                                 <input type="text" v-model="form.request_purpose"
                                     class="mt-1 block w-full text-black  border border-gray-300 rounded-md shadow-sm px-3 py-2" />
                             </div>
@@ -174,12 +174,19 @@ const submit = () => {
                                     class="mt-1 block w-full text-black  border border-gray-300 rounded-md shadow-sm px-3 py-2">
                                     <option value="1">Single</option>
                                     <option value="2">Married</option>
+                                    <option value="3">Widowed</option>
+                                    <option value="4">Separated</option>
                                 </select>
                             </div>
                             <div>
                                 <label class="block text-sm font-medium text-gray-700">Month/Yrs in Barangay</label>
-                                <input type="number" v-model="form.inBryg"
+                                <input type="text" v-model="form.months_years_in_brgy"
                                     class="mt-1 block w-full text-black  border border-gray-300 rounded-md shadow-sm px-3 py-2" />
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700">Preferred Date of Claim </label>
+                                <input type="date" v-model="form.date_of_claim"
+                                    class="mt-1 text-black  block w-full border border-gray-300 rounded-md shadow-sm px-3 py-2" />
                             </div>
                         </div>
                         <div>

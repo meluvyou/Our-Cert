@@ -30,7 +30,7 @@ const mainNavItems: NavItem[] = [
         icon: LayoutGrid,
     },
     {
-        title: 'Request Form',
+        title: 'All Requests',
         href: '/request-form',
         icon: LayoutGrid,
     },
