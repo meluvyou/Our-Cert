@@ -174,13 +174,11 @@ const submit = () => {
                                     class="mt-1 block w-full text-black  border border-gray-300 rounded-md shadow-sm px-3 py-2">
                                     <option value="1">Single</option>
                                     <option value="2">Married</option>
-                                    <option value="3">Widowed</option>
-                                    <option value="4">Separated</option>
                                 </select>
                             </div>
                             <div>
                                 <label class="block text-sm font-medium text-gray-700">Month/Yrs in Barangay</label>
-                                <input type="text" v-model="form.months_years_in_brgy"
+                                <input type="number" v-model="form.inBryg"
                                     class="mt-1 block w-full text-black  border border-gray-300 rounded-md shadow-sm px-3 py-2" />
                             </div>
                             <div>

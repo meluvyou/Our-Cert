@@ -9,31 +9,28 @@ import { BookOpen, Folder, LayoutGrid } from 'lucide-vue-next';
 import AppLogo from './AppLogo.vue';
 
 const mainNavItems: NavItem[] = [
+
     {
-        title: 'Dashboard',
-        href: '/dashboard',
-        icon: LayoutGrid,
-    },
-    {
-        title: 'Users',
+        title: 'User',
         href: '/users',
         icon: LayoutGrid,
     },
     {
-        title: 'Roles',
-        href: '/roles',
+        title: 'All Requests',
+        href: 'certificate-requests',
         icon: LayoutGrid,
     },
-    {
-        title: 'Permissions',
-        href: '/permissions',
-        icon: LayoutGrid,
-    },
+ 
     {
         title: 'All Requests',
         href: '/request-form',
+    },
+     {
+        title: 'Sample Crud',
+        href: '/sample-crud',
         icon: LayoutGrid,
     },
+
 ];
 
 const footerNavItems: NavItem[] = [
