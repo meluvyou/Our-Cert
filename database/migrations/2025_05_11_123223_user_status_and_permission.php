@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->integer('status')->default(1)->after('password')->nullable();
+            $table->integer('role')->default(1)->after('status')->nullable();// 1 = user, 2 = admin
         });
 
-        // please create a new permission table
         Schema::create('permissions', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
