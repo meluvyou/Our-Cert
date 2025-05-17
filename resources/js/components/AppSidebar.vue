@@ -21,10 +21,6 @@ const mainNavItems: NavItem[] = [
         icon: LayoutGrid,
     },
  
-    {
-        title: 'All Requests',
-        href: '/request-form',
-    },
      {
         title: 'Sample Crud',
         href: '/sample-crud',
