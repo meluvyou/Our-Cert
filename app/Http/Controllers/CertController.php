@@ -24,13 +24,22 @@ class CertController extends Controller
  
 
         $request->validate([
-            'first_name' => 'required|string|max:15',
-            'last_name' => 'required|string|max:15',
+            'first_name' => 'required|string|max:20',
+            'last_name' => 'required|string|max:20',
             'email' => 'required|email|max:25',
             'purok' => 'required|string|max:15',
             'date_of_birth' => 'required|date_format:Y-m-d',
             'contact_number' => 'required|digits_between:10,11',
             'request_type' => 'required|integer',
+            'date_of_claim' => 'required|date_format:Y-m-d',
+            'months_years_in_brgy'  => 'required|string|max:6',
+            'request_purpose' => 'required|string|max:255',
+            'middle_name' => 'nullable|string|max:20',
+            'suffix' => 'nullable|string|max:5',
+            'barangay' => 'required|string|max:20',
+            'city' => 'required|string|max:20',
+            'province' => 'required|string|max:20',
+            'civilstatus' => 'required|integer',
             // Add other validation rules as needed
         ]);
 
@@ -50,6 +59,8 @@ class CertController extends Controller
         $requestCert->civilstatus = $request->input('civilstatus') ?? 0; // Default to 0 if not provided
         $requestCert->status = $request->input('status') ?? 0; // Default to 0 if not provided
         $requestCert->request_purpose = $request->input('request_purpose');
+        $requestCert->date_of_claim = $request->input('date_of_claim');
+        $requestCert->months_years_in_brgy = $request->input('months_years_in_brgy'); 
         // Save the request to the database
         $requestCert->save();
         
