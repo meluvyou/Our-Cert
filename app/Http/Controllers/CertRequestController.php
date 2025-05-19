@@ -31,7 +31,8 @@ class CertRequestController extends Controller
             'email' => 'required|email|max:25',
             'status' => 'required|string|max:20',
             'address' => 'required|string|max:25',
-            'docxtype' => 'required|mimes:docx|max:25',
+            'request_type' => 'required|string|max:25',
+            'request_purpose'=> 'required|string|max:25',
             'phone' => 'required|mimes:docx|max:25',
 
         ]);

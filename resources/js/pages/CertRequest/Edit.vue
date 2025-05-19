@@ -26,8 +26,6 @@ const CertRequest = reactive({
     civilstatus: null,
     status: 0,
     email: '',
-    password: '',
-    password_confirmation: '',
     inBryg: '',
     isValidateInformation: false,
     success: false,
@@ -261,9 +259,7 @@ const submit = () => {
 
                         <div class="flex items-center space-x-2">
                             <input id="billing" v-model="isValidateInformation" type="checkbox" class="h-4 w-4 text-blue-600 border-gray-300 rounded" />
-                            <label for="billing" class="text-sm text-gray-700">All the information that are provided
-                                are
-                                true.</label> 
+                            <label for="billing" class="text-sm text-gray-700">All the information that are provided are true.</label> 
                         </div>
                         <div class="pt-4">
                             <button type="submit" :disabled="!isValidateInformation"

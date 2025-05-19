@@ -11,10 +11,7 @@ const breadcrumbs = [
     href: '/CertRequest'
     },
     
-    { title: 'All Requests'
-    },
-    
-    { title: 'Create Request',
+    { title: 'All Requests',
     href: '/CertRequest/create'
     },
     
@@ -25,11 +22,10 @@ const breadcrumbs = [
     
 ];
 
-
 defineProps({requestCert:Array});
 
 const onEdit = (id) => {
-    router.visit(`/allreq/edit/${id}`);
+    router.visit(`/CertRequest/edit/${id}`);
 };
 </script> 
 
@@ -52,6 +48,7 @@ const onEdit = (id) => {
                         <th class="px-6 py-3">Phone</th>
                         <th class="px-6 py-3">Email</th>
                         <th class="px-6 py-3">Request_Type</th>
+                        <th class="px-6 py-3">Request_purpose</th>
                         <th class="px-6 py-3">Status</th>
                     </tr>
                 </thead>
@@ -68,6 +65,11 @@ const onEdit = (id) => {
                             <span v-else-if="row.status === 'pending'" class="text-yellow-600">Pending</span>
                             <span v-else class="text-red-600">Rejected</span>
                         </td>
+                         <td class="px-6 py-4">
+                                <button class="text-blue-600 hover:text-blue-900 dark:text-blue-500 dark:hover:text-blue-400" @click="onEdit(row.id)">Edit</button>
+                                &nbsp;|&nbsp;
+                                <button class="text-red-600 hover:text-red-900 dark:text-red-500 dark:hover:text-red-400">Delete</button>
+                            </td>
 
                     </tr>
                 </tbody>
