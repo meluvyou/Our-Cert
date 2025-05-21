@@ -17,7 +17,7 @@ const mainNavItems: NavItem[] = [
     },
     {
         title: 'All Requests',
-        href: 'certificate-requests',
+        href: 'CertRequest',
         icon: LayoutGrid,
     },
  

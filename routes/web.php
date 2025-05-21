@@ -3,12 +3,10 @@
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
+
 Route::get('/', function () {
     return Inertia::render('Welcome');
 })->name('home');
-
-Route::get('req-cert',[\App\Http\Controllers\CertController::class,'index'])->name('certificates');
-Route::post('request-cert-save',[\App\Http\Controllers\CertController::class,'store'])->name('request-form.store');
 
 Route::group(['auth', 'verified'], function(){
     
@@ -34,8 +32,6 @@ Route::group(['auth', 'verified'], function(){
     Route::get('/certificate-request/create',[\App\Http\Controllers\SampleCrudController::class,'create'])->name('certificate-request.create'); 
     Route::get('/certificate-request/edit/{id}',[\App\Http\Controllers\SampleCrudController::class,'edit'])->name('certificate-request.edit');
     Route::post('/certificate-request/store',[\App\Http\Controllers\SampleCrudController::class,'store'])->name('certificate-request.store');
-
-    Route::get('dashboard', [\App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
 
 });
 
