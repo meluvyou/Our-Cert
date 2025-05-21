@@ -9,13 +9,15 @@ const breadcrumbs = [
      
     { title: 'All Request', 
     href: '/CertRequest'
-    },
-    
+    },   
 ];
 
-defineProps({requestCert:Array});
+defineProps({CertRequest:Array});
 
 const onEdit = (id) => {
+    // Redirect to the edit page for the selected person
+    //inertia visit(`/CertRequest/${id}/edit`);
+    // or use window.location.href  
     router.visit(`/CertRequest/edit/${id}`);
 };
 </script> 
@@ -27,8 +29,9 @@ const onEdit = (id) => {
    <AppLayout :breadcrumbs="breadcrumbs">
         <div class="flex items-center justify-between mb-4">
             <h1 class="text-2xl font-bold">All Requests</h1>
-            <Link href="/CertRequest/create" class="btn btn-primary">
-                Create Request</Link>
+            <Link href="/CertRequest/create" class="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                Create Request
+            </Link>
         </div>
         <div class="overflow-hidden rounded-lg border bg-card shadow-md dark:border-slate-700 dark:bg-slate-800">
             <table class="w-full table-auto text-left text-sm text-gray-500 dark:text-gray-400">
@@ -44,7 +47,7 @@ const onEdit = (id) => {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="row in requestCert" :key="row.id" class="border-b bg-white dark:border-gray-700 dark:bg-gray-800">
+                    <tr v-for="row in CertRequest" :key="row.id" class="border-b bg-white dark:border-gray-700 dark:bg-gray-800">
                         <td class="px-6 py-4">{{ row.user?.name || 'N/A' }}</td>
                         <td class="px-6 py-4">{{ row.address }}</td>
                         <td class="px-6 py-4">{{ row.phone }}</td>
