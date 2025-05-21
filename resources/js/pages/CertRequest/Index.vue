@@ -11,15 +11,6 @@ const breadcrumbs = [
     href: '/CertRequest'
     },
     
-    { title: 'All Requests',
-    href: '/CertRequest/create'
-    },
-    
-    { title: 'Edit Request',
-     href: '/CertRequest/edit'
-    }
-
-    
 ];
 
 defineProps({requestCert:Array});

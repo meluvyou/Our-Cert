@@ -11,6 +11,7 @@ const props = defineProps<{
     person?: Record<string, any>;
 }>();
 const CertRequest = reactive({
+    id: null,
     first_name: '',
     middle_name: '',
     last_name: '',
@@ -27,8 +28,6 @@ const CertRequest = reactive({
     status: 0,
     email: '',
     inBryg: '',
-    isValidateInformation: false,
-    success: false,
 });
 
 
@@ -46,6 +45,11 @@ const breadcrumbs: BreadcrumbItem[] = [
         href: '/CertRequest/create',
     },
 ];
+const createSampleCrud = () => {
+
+    if (props.mode === 'edit') {
+        CertRequest.id = props.person.id;
+    }
 
     axios.post('/CertRequest/store', CertRequest)
         .then(response => {
@@ -122,6 +126,7 @@ const submit = () => {
             // Handle error response
         });
 };
+}
 </script>
 
 <template>
@@ -129,7 +134,7 @@ const submit = () => {
 
     <Head title="Form" />
 
-    <div v-if="success" class="min-h-screen bg-gray-100 p-8">
+    <div v-if="success.value" class="min-h-screen bg-gray-100 p-8">
         <div class="max-w-4xl mx-auto bg-white shadow-md rounded-lg p-8">
             <h2 class="text-2xl font-semibold text-gray-800 mb-2">Request Certificate</h2>
             <p class="text-gray-500 mb-6">Your request has been submitted successfully.</p>

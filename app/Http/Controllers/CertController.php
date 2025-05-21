@@ -7,6 +7,15 @@ use Inertia\Inertia;
 use App\Models\RequestCert;
 class CertController extends Controller
 {
+// ...existing code...
+
+public function create()
+{
+    // Return a view or Inertia page for creating a certificate request
+    return Inertia::render('CertRequest/Create');
+}
+
+// ...existing code...
     public function index()
     {
         $appSettings = [
