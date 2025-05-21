@@ -54,9 +54,9 @@ const onEdit = (id) => {
                     <tbody>
                         <!-- Add user rows here -->
                          <tr v-for="person in persons" :key="person.id" class="border-b bg-white dark:border-gray-700 dark:bg-gray-800">
-                            <td class="px-6 py-4 font-medium text-gray-900 dark:text-white">{{ person.name }}</td>
-                            <td class="px-6 py-4">{{ person.email }}</td>
-                            <td class="px-6 py-4">{{ person.phone }}</td>
+                            <td class="px-6 py-4 font-medium text-gray-900 dark:text-white">{{ persons.name }}</td>
+                            <td class="px-6 py-4">{{ persons.email }}</td>
+                            <td class="px-6 py-4">{{ persons.phone }}</td>
                             <td class="px-6 py-4">
                                 <button class="text-blue-600 hover:text-blue-900 dark:text-blue-500 dark:hover:text-blue-400" @click="onEdit(person.id)">Edit</button>
                                 &nbsp;|&nbsp;
