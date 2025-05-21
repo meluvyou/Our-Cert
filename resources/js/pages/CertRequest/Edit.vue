@@ -139,7 +139,7 @@ const submit = () => {
     </div>
 
     <form @submit.prevent="submit" v-if="!CertRequest.success">
-        <div class="min-h-screen bg-gray-100 p-8">
+        <div class="min-h-screen bg-dark p-8">
             <div class="max-w-4xl mx-auto bg-white shadow-md rounded-lg p-8">
                 <h2 class="text-2xl font-semibold text-gray-800  b-2">Request Form</h2>
                 <p class="text-gray-500 mb-6">Enter your details below for your request certificate. </p>
