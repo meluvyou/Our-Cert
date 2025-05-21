@@ -10,18 +10,22 @@ class CertRequestController extends Controller
     
     public function index()
     {
-        $requestCert = RequestCert::all();
+        $certRequest = RequestCert::all();
 
         //select * from request_certs
 
         return Inertia::render('CertRequest/Index', [
-            'requestCert' => $requestCert,
+            'CertRequest' => $certRequest,
         ]);
     }
 
     public function create()
     {
-        return inertia('CertRequest/Edit', ['person' => null, 'mode' => 'create']);
+        return inertia('CertRequest/Edit',
+         ['person' => null,
+        'mode' => 'create',
+        'userType' => 'user', 
+    ]);
     }
     public function store(Request $request)
     {
@@ -73,7 +77,10 @@ class CertRequestController extends Controller
         //$person = User::findOrFail(id: $id);
         
         $allreq = RequestCert::where('id', $id)->first();
-        return inertia('allrequest/Edit', ['user' => $allreq, 'mode' => 'edit']);
+        return inertia('allrequest/Edit', 
+        ['user' => $allreq,
+        'mode' => 'edit',
+        'userType' => 'user', ]);
     }
 
   

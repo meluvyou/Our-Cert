@@ -48,7 +48,7 @@ const onEdit = (id) => {
                 </thead>
                 <tbody>
                     <tr v-for="row in CertRequest" :key="row.id" class="border-b bg-white dark:border-gray-700 dark:bg-gray-800">
-                        <td class="px-6 py-4">{{ row.user?.name || 'N/A' }}</td>
+                        <td class="px-6 py-4">{{ row.name || 'N/A' }}</td>
                         <td class="px-6 py-4">{{ row.address }}</td>
                         <td class="px-6 py-4">{{ row.phone }}</td>
                         <td class="px-6 py-4">{{ row.email }}</td>
