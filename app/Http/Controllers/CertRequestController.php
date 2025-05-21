@@ -10,21 +10,27 @@ class CertRequestController extends Controller
     
     public function index()
     {
-        $certRequest = RequestCert::all();
-
-        //select * from request_certs
-
+        $appSettings = [
+            'barangay' => 'Guinacot',
+            'province' => 'Cebu',
+            'city' => 'Danao City',
+        ];
         return Inertia::render('CertRequest/Index', [
-            'CertRequest' => $certRequest,
+            'appSettings' => $appSettings,
         ]);
     }
-
     public function create()
-    {
-        return inertia('CertRequest/Edit',
-         ['person' => null,
+{
+    $appSettings = [
+        'barangay' => 'Guinacot',
+        'province' => 'Cebu',
+        'city' => 'Danao City',
+    ];
+    return inertia('CertRequest/Edit', [
+        'person' => null,
         'mode' => 'create',
-        'userType' => 'user', 
+        'userType' => 'user',
+        'appSettings' => $appSettings, 
     ]);
     }
     public function store(Request $request)
@@ -72,18 +78,22 @@ class CertRequestController extends Controller
 
     }
 
+    
     public function edit($id)
     {
-        //$person = User::findOrFail(id: $id);
-        
-        $allreq = RequestCert::where('id', $id)->first();
-        return inertia('allrequest/Edit', 
-        ['user' => $allreq,
+    $appSettings = [
+        'barangay' => 'Guinacot',
+        'province' => 'Cebu',
+        'city' => 'Danao City',
+    ];
+    $allreq = RequestCert::where('id', $id)->first();
+    return inertia('allrequest/Edit', [
+        'user' => $allreq,
         'mode' => 'edit',
-        'userType' => 'user', ]);
+        'userType' => 'user',
+        'appSettings' => $appSettings,
+    ]);
     }
-
-  
 
     public function destroy($id)
     {
