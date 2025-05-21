@@ -21,7 +21,7 @@ class CertRequestController extends Controller
 
     public function create()
     {
-        return inertia('request/Edit', ['person' => null, 'mode' => 'create']);
+        return inertia('CertRequest/Edit', ['person' => null, 'mode' => 'create']);
     }
     public function store(Request $request)
     {
