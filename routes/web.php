@@ -33,6 +33,8 @@ Route::group(['auth', 'verified'], function(){
     Route::get('/certificate-request/edit/{id}',[\App\Http\Controllers\SampleCrudController::class,'edit'])->name('certificate-request.edit');
     Route::post('/certificate-request/store',[\App\Http\Controllers\SampleCrudController::class,'store'])->name('certificate-request.store');
 
+    Route::get('dashboard', [\App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
+
 });
 
 
