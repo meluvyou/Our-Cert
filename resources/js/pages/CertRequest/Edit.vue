@@ -34,26 +34,76 @@ const CertRequest = reactive({
     isValidateInformation: false,
     success: false,
 });
-
+const breadcrumbs: BreadcrumbItem[] = [
+    {
+        title: 'Dashboard',
+        href: '/dashboard',
+    },
+    {
+        title: 'All Requests',
+        href: '/CertRequest',
+    },
+    {
+        title: 'Create/Edit',
+        href: '/CertRequest/create',
+    },
+];
 const isValidateInformation = ref(false);
 const success = ref(false);
 
-const breadcrumbs: BreadcrumbItem[] = [
-    // ...existing code...
-];
-
 const createCertRequest = () => {
-    // ...existing code...
+
+    if (props.mode === 'edit') {
+        CertRequest.id = props.person.id;
+    }
+
+    axios.post('/sample-crud/store', CertRequest)
+        .then(response => {
+
+            alert(response.data.message);
+            CertRequest.first_name = '';
+            CertRequest.middle_name = '';
+            CertRequest.last_name = '';
+            CertRequest.suffix = '';
+            CertRequest.purok = '';
+            CertRequest.email = '';
+            CertRequest.contact_number = '';
+
+            router.visit('/sample-crud'); // Redirect to the index page after creation
+            // Optionally, redirect or show a success message
+        })
+        .catch(error => {
+            console.error('Error creating CertRequest:', error);
+            alert('An error occurred while creating CertRequest.');
+        });
 };
 
 onMounted(() => {
-    // ...existing code...
+    if (props.mode === 'edit') {
+        CertRequest.id = props.person.id;
+        CertRequest.first_name = props.person.first_name || '';
+        CertRequest.middle_name = props.person.middle_name || '';
+        CertRequest.last_name = props.person.last_name || '';
+        CertRequest.suffix = props.person.suffix || '';
+        CertRequest.email = props.person.email || '';
+        CertRequest.contact_number = props.person.contact_number || '';
+        CertRequest.purok = props.person.purok || '';
+        CertRequest.barangay = props.person.barangay || props.appSettings.barangay;
+        CertRequest.city = props.person.city || props.appSettings.city;
+        CertRequest.province = props.person.province || props.appSettings.province;
+        CertRequest.date_of_birth = props.person.date_of_birth || '';
+        CertRequest.request_type = props.person.request_type || '';
+        CertRequest.request_purpose = props.person.request_purpose || '';
+        CertRequest.civilstatus = props.person.civilstatus || null;
+        CertRequest.inBryg = props.person.inBryg || '';
+    }
 });
 
-const fileInput=ref(null);
+const fileInput = ref(null);
 
-const handleFileUpload = (event) => {
-    const file = event.target.files[0];
+const handleFileUpload = (event: Event) => {
+    const target = event.target as HTMLInputElement;
+    const file = target.files && target.files[0];
     if (file) {
         const formData = new FormData();
         formData.append('file', file);
@@ -61,13 +111,14 @@ const handleFileUpload = (event) => {
         console.log('File uploaded:', file);
     }
 };
+
 const submit = () => {
     axios.post('/CertRequest', CertRequest)
         .then(response => {
-            success.value = true;
+            CertRequest.success = true;
         })
         .catch(error => {
-            success.value = false;
+            CertRequest.success = false;
             console.error('Error submitting form:', error);
             console.error(error);
             // Handle error response
@@ -79,7 +130,7 @@ const submit = () => {
 
     <Head title="Register" />
 
-    <div v-if="success" class="min-h-screen bg-gray-100 p-8">
+    <div v-if="CertRequest.success" class="min-h-screen bg-gray-100 p-8">
         <div class="max-w-4xl mx-auto bg-white shadow-md rounded-lg p-8">
             <h2 class="text-2xl font-semibold text-gray-800 mb-2">Request Certificate</h2>
             <p class="text-gray-500 mb-6">Your request has been submitted successfully.</p>
@@ -87,7 +138,7 @@ const submit = () => {
         </div>
     </div>
 
-    <form @submit.prevent="submit" v-if="!success">
+    <form @submit.prevent="submit" v-if="!CertRequest.success">
         <div class="min-h-screen bg-gray-100 p-8">
             <div class="max-w-4xl mx-auto bg-white shadow-md rounded-lg p-8">
                 <h2 class="text-2xl font-semibold text-gray-800  b-2">Request Form</h2>

@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CertRequest;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
-use App\Models\RequestCert;
 class CertRequestController extends Controller
 {
     
@@ -43,17 +43,20 @@ class CertRequestController extends Controller
             'address' => 'required|string|max:25',
             'request_type' => 'required|string|max:25',
             'request_purpose'=> 'required|string|max:25',
+            'purok' => 'required|string|max:25',
             'phone' => 'required|mimes:docx|max:25',
 
         ]);
 
         if ($request->input('id')) {
             // Update existing record
-            $allrequest = RequestCert::findOrFail($request->input('id'));
+            $allrequest = CertRequest::findOrFail($request->input('id'));
             $allrequest->name = $request->input('name');
             $allrequest->email = $request->input('email');
             $allrequest->address = $request->input('address');
-            $allrequest->docxtype = $request->input('docxtype');
+            $allrequest->request_type = $request->input('request_type');
+            $allrequest->request_purpose = $request->input('request_purpose');
+            $allrequest->purok = $request->input('purok');
             $allrequest->phone = $request->input('phone');
             $allrequest->status = $request->input('status');
 
@@ -64,7 +67,7 @@ class CertRequestController extends Controller
             ]);
         }else {
             // Create new record
-            $requestCert = new RequestCert();
+            $requestCert = new CertRequest();
             $requestCert->name = $request->input('name');
             $requestCert->email = $request->input('email');
             $requestCert->status = $request->input('status');
@@ -86,7 +89,7 @@ class CertRequestController extends Controller
         'province' => 'Cebu',
         'city' => 'Danao City',
     ];
-    $allreq = RequestCert::where('id', $id)->first();
+    $allreq = CertRequest::where('id', $id)->first();
     return inertia('allrequest/Edit', [
         'user' => $allreq,
         'mode' => 'edit',

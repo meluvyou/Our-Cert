@@ -7,9 +7,6 @@ Route::get('/', function () {
     return Inertia::render('Welcome');
 })->name('home');
 
-Route::get('req-cert',[\App\Http\Controllers\CertController::class,'index'])->name('certificates');
-Route::post('request-cert-save',[\App\Http\Controllers\CertController::class,'store'])->name('request-form.store');
-
 Route::group(['auth', 'verified'], function(){
     
     Route::get('dashboard', function () {
@@ -34,7 +31,6 @@ Route::group(['auth', 'verified'], function(){
     Route::get('/CertRequest/create',[\App\Http\Controllers\CertRequestController::class,'create'])->name('CertRequest.create'); 
     Route::get('/CertRequest/edit/{id}',[\App\Http\Controllers\CertRequestController::class,'edit'])->name('CertRequest.edit');
     Route::post('/CertRequest/store',[\App\Http\Controllers\CertRequestController::class,'store'])->name('CertRequest.store');
-
 
 });
 
