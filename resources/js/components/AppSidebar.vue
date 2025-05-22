@@ -18,6 +18,11 @@ const mainNavItems: NavItem[] = [];
 if (role === 'admin' || role === 2) {
         mainNavItems.push(
             {
+                title: 'Dashboard',
+                href: '/dashboard',
+                icon: LayoutGrid,
+            } as NavItem,
+            {
                 title: 'User',
                 href: '/users',
                 icon: LayoutGrid,
