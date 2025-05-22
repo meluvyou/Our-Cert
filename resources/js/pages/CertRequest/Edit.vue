@@ -42,7 +42,7 @@ const breadcrumbs: BreadcrumbItem[] = [
         href: '/CertRequest',
     },
     {
-        title: 'Create/Edit',
+        title: 'Request Certificate',
         href: '/CertRequest/create',
     },
 ];
@@ -184,7 +184,7 @@ const handleFileUpload = (event: Event) => {
                                         class="mt-1 text-black  block w-full border border-gray-300 rounded-md shadow-sm px-3 py-2" />
                                 </div>
                                 <div>
-                                    <label class="block text-sm font-medium text-gray-700">Contact_number</label>
+                                    <label class="block text-sm font-medium text-gray-700">Contact Number</label>
                                     <input type="text"
                                      v-model="CertRequest.contact_number"
                                      maxlength="11"
