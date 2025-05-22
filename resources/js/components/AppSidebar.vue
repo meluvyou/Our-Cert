@@ -37,7 +37,7 @@ if (role === 'admin' || role === 2) {
         mainNavItems.push(
             {
                 title: 'My Requests',
-                href: '/users',
+                href: '/CertRequest',
                 icon: LayoutGrid,
             } as NavItem,
         );

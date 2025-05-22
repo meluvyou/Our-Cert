@@ -33,16 +33,6 @@ Route::group(['auth', 'verified'], function(){
     Route::get('/CertRequest/edit/{id}',[\App\Http\Controllers\CertRequestController::class,'edit'])->name('CertRequest.edit');
     Route::post('/CertRequest/store',[\App\Http\Controllers\CertRequestController::class,'store'])->name('CertRequest.store');
     
-    
-        //Route::middleware(['auth', 'role:admin'])->group(function () {
-        //Route::get('/admin/dashboard', [AdminController::class, 'index']);
-        // other admin routes
-    //});
-
-       // Route::middleware(['auth', 'role:user'])->group(function () {
-       // Route::get('/user/dashboard', [UserController::class, 'index']);
-        // other user routes
-   // });
 });
 
 

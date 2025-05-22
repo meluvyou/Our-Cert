@@ -58,8 +58,7 @@ class CertRequestController extends Controller
             $allrequest->request_type = $request->input('request_type');
             $allrequest->request_purpose = $request->input('request_purpose');
             $allrequest->purok = $request->input('purok');
-            $allrequest->phone = $request->input('contact_number');
-            $allrequest->status = $request->input('status');
+            $allrequest->phone = $request->input('contact_number');;
             $allrequest->save();
             return response()->json([
                 'success' => true,

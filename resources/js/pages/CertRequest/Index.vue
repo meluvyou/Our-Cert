@@ -24,7 +24,7 @@ const onEdit = (id) => {
 
 <template>
 
-    <Head title="All Requests" />
+    <Head title="My Requests" />
 
    <AppLayout :breadcrumbs="breadcrumbs">
         <div class="flex items-center justify-between mb-4">
