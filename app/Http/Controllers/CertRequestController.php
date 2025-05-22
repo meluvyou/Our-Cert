@@ -42,7 +42,6 @@ class CertRequestController extends Controller
             'last_name' => 'required|string|max:25',
             'suffix' => 'nullable|string|max:25',
             'contact_number' => 'required|string|max:11',
-            'address' => 'required|string|max:25',
             'request_type' => 'required|string|max:25',
             'request_purpose' => 'required|string|max:25',
             'purok' => 'required|string|max:25',
@@ -54,15 +53,13 @@ class CertRequestController extends Controller
             // Update existing record
             $allrequest = CertRequest::findOrFail($request->input('id'));
             $allrequest->first_name = $request->input('first_name');
-            $allrequest->middle_name_name = $request->input('middle_name');
+            $allrequest->middle_name = $request->input('middle_name');
             $allrequest->last_name = $request->input('last_name');
             $allrequest->suffix = $request->input('suffix');
-            $allrequest->email = $request->input('email');
-            $allrequest->address = $request->input('address');
             $allrequest->request_type = $request->input('request_type');
             $allrequest->request_purpose = $request->input('request_purpose');
             $allrequest->purok = $request->input('purok');
-            $allrequest->phone = $request->input('contact_number');;
+            $allrequest->contact_number = $request->input('contact_number');;
             $allrequest->save();
             return response()->json([
                 'success' => true,
@@ -75,13 +72,10 @@ class CertRequestController extends Controller
             $requestCert->middle_name = $request->input('middle_name');
             $requestCert->last_name = $request->input('last_name');
             $requestCert->suffix = $request->input('suffix');
-            $requestCert->email = $request->input('email');
-            $requestCert->status = $request->input('status');
-            $requestCert->address = $request->input('address');
             $requestCert->request_type = $request->input('request_type');
             $requestCert->request_purpose = $request->input('request_purpose');
             $requestCert->purok = $request->input('purok');
-            $requestCert->phone = $request->input('contact_number');
+            $requestCert->contact_number = $request->input('contact_number');
             $requestCert->save();
             return response()->json([
                 'success' => true,

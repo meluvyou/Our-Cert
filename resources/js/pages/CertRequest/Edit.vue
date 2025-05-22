@@ -174,7 +174,7 @@ const handleFileUpload = (event: Event) => {
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700">Barangay</label>
-                                    <input type="text" v-model="CertRequest.barangay"
+                                    <input type="text" disabled v-model="CertRequest.barangay"
                                         class="mt-1 block w-full border text-black  border-gray-300 rounded-md shadow-sm px-3 py-2" />
                                 </div>
                             </div>
@@ -182,12 +182,12 @@ const handleFileUpload = (event: Event) => {
                             <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700">City</label>
-                                    <input type="text" v-model="CertRequest.city"
+                                    <input type="text" disabled v-model="CertRequest.city"
                                         class="mt-1 text-black  block w-full border border-gray-300 rounded-md shadow-sm px-3 py-2" />
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700">Province</label>
-                                    <input type="text" v-model="CertRequest.province"
+                                    <input type="text" disabled v-model="CertRequest.province"
                                         class="mt-1 text-black  block w-full border border-gray-300 rounded-md shadow-sm px-3 py-2" />
                                 </div>
                                 <div>
@@ -197,7 +197,10 @@ const handleFileUpload = (event: Event) => {
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700">Contact_number</label>
-                                    <input type="text" v-model="CertRequest.contact_number"
+                                    <input type="text"
+                                     v-model="CertRequest.contact_number"
+                                     maxlength="11"
+                                     minlength="11"
                                         class="mt-1 block w-full text-black  border border-gray-300 rounded-md shadow-sm px-3 py-2" />
                                 </div>
                                 <div>
