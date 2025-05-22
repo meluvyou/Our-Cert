@@ -1,214 +1,102 @@
 <script setup lang="ts">
-import InputError from '@/components/InputError.vue';
-import TextLink from '@/components/TextLink.vue';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import AuthBase from '@/layouts/AuthLayout.vue';
-import { Head, useForm } from '@inertiajs/vue3';
-import { LoaderCircle } from 'lucide-vue-next';
-import { reactive,ref } from 'vue';
-import axios from 'axios';
+import AppLayout from '@/layouts/AppLayout.vue';
+import { Head, Link, router } from '@inertiajs/vue3';
+import { type BreadcrumbItem } from '@/types';
+const breadcrumbs = [
+    { title: 'Dashboard',
+     href: '/dashboard'
+    },
+     
+    { title: 'All Request', 
+    href: '/CertRequest'
+    },   
+];
 
-const props = defineProps({ appSettings: Object});
-const form = reactive({
-    first_name: '',
-    middle_name: '',
-    last_name: '',
-    suffix: '',
-    purok: '',
-    barangay: props.appSettings.barangay,
-    city: props.appSettings.city,
-    province: props.appSettings.province,
-    date_of_birth: '',
-    contact_number: '',
-    request_type: '',
-    request_purpose: '',
-    civilstatus: null,
-    status:0,
-    email: '',
-    password: '',
-    password_confirmation: '',
-    months_years_in_brgy: '',
-    date_of_claim: '',
-    isValidateInformation: false,
-    success: false,
-});
+// Define the type for a CertRequest item
+interface CertRequestItem {
+    id: number;
+    first_name: string;
+    middle_name: string;
+    last_name: string;
+    purok: string;
+    contact_number: string;
+    email: string;
+    request_type: string;
+    request_purpose: string;
+    request_date: string;
+    status: string;
+}
 
-const isValidateInformation = ref(false);
-const success = ref(false);
+defineProps<{ CertRequest: CertRequestItem[] }>();
 
-
-const fileInput=ref(null);
-
-const handleFileUpload = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-        const formData = new FormData();
-        formData.append('file', file);
-        // You can now send this formData to your server
-        console.log('File uploaded:', file);
-    }
+const onEdit = (id) => {
+    // Redirect to the edit page for the selected person
+    //inertia visit(`/CertRequest/${id}/edit`);
+    // or use window.location.href  
+    router.visit(`/CertRequest/edit/${id}`);
 };
-const submit = () => {
-    axios.post('/request-cert-save', form)
-        .then(response => {
-            success.value = true;
-        })
-        .catch(error => {
-            success.value = false;
-            console.error('Error submitting form:', error);
-            console.error(error);
-            // Handle error response
-        });
-};
-</script>
+</script> 
 
 <template>
 
+    <Head title="My Requests" />
 
-    <Head title="Register" />
-
-    <div v-if="success" class="min-h-screen bg-gray-100 p-8">
-        <div class="max-w-4xl mx-auto bg-white shadow-md rounded-lg p-8">
-            <h2 class="text-2xl font-semibold text-gray-800 mb-2">Request Certificate</h2>
-            <p class="text-gray-500 mb-6">Your request has been submitted successfully.</p>
-            <p class="text-gray-500 mb-6">Please check your email for further instructions.</p>
+   <AppLayout :breadcrumbs="breadcrumbs">
+        <div class="flex items-center justify-between mb-4">
+            <h1 class="text-2xl font-bold">Request</h1>
+            <Link href="/CertRequest/create" class="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                Create Request
+            </Link>
         </div>
+        <div class="overflow-hidden rounded-lg border bg-card shadow-md dark:border-slate-700 dark:bg-slate-800">
+            <table class="w-full table-auto text-left text-sm text-gray-500 dark:text-gray-400">
+                <thead class="bg-gray-50 text-xs uppercase text-gray-700 dark:bg-gray-700 dark:text-gray-400">
+                    <tr>
+                        <th class="px-6 py-3">First Name</th>
+                        <th class="px-6 py-3">Middle Name</th>
+                        <th class="px-6 py-3">Last Name</th>
+                        <th class="px-6 py-3">Purok</th>
+                        <th class="px-6 py-3">Barangay</th>
+                        <th class="px-6 py-3">City</th>
+                        <th class="px-6 py-3">Province</th>
+                        <th class="px-6 py-3">Contact Number</th>
+                        <th class="px-6 py-3">Email</th>
+                        <th class="px-6 py-3">Request Type</th>
+                        <th class="px-6 py-3">Request Purpose</th>
+                        <th class="px-6 py-3">Request Date</th>
+                        <th class="px-6 py-3">Status</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="row in CertRequest" :key="row.id" class="border-b bg-white dark:border-gray-700 dark:bg-gray-800">
+                        <td class="px-6 py-4">{{ row.first_name }}</td>
+                        <td class="px-6 py-4">{{ row.middle_name }}</td>
+                        <td class="px-6 py-4">{{ row.last_name }}</td>
+                        <td class="px-6 py-4">{{ row.purok }}</td>
+                         <td class="px-6 py-4">{{ row.barangay }}</td>
+                          <td class="px-6 py-4">{{ row.city }}</td>
+                          <td class="px-6 py-4">{{ row.province }}</td>
+                          <td class="px-6 py-4">{{ row.contact_number }}</td>
+                        <td class="px-6 py-4">{{ row.email }}</td>
+                        <td class="px-6 py-4">{{ row.request_type }}</td>
+                        <td class="px-6 py-4">{{ row.request_purpose }}</td>
+                        <td class="px-6 py-4">{{ row.request_date }}</td>
+                        
+                        <td class="px-6 py-4">
+                            <span v-if="row.status === 'approved'" class="text-green-600">Approved</span>
+                            <span v-else-if="row.status === 'pending'" class="text-yellow-600">Pending</span>
+                            <span v-else class="text-red-600">Rejected</span>
+                        </td>
+                         <td class="px-6 py-4">
+                                <button class="text-blue-600 hover:text-blue-900 dark:text-blue-500 dark:hover:text-blue-400" @click="onEdit(row.id)">Edit</button>
+                                &nbsp;|&nbsp;
+                                <button class="text-red-600 hover:text-red-900 dark:text-red-500 dark:hover:text-red-400">Delete</button>
+                            </td>
 
-    </div>
-
-    <form @submit.prevent="submit" v-if="!success">
-        <div class="min-h-screen bg-gray-100 p-8">
-            <div class="max-w-4xl mx-auto bg-white shadow-md rounded-lg p-8">
-                <h2 class="text-2xl font-semibold text-gray-800 text-center mb-2"> Barangay Certificate Request Form</h2>
-
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div class="md:col-span-3">
-                        <h3 class="text-lg font-medium text-gray-700">Personal Details</h3>
-                        <p class="text-gray-500 mb-4">Please fill in your personal information.</p>
-                    </div>
-
-                    <div class="md:col-span-3 space-y-4">
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700">First Name</label>
-                            <input type="text" v-model="form.first_name"
-                                class="mt-1 block w-full border border-gray-300 rounded-md text-black shadow-sm px-3 py-2 focus:ring-blue-500 focus:border-blue-500" />
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700">Middle Name</label>
-                            <input type="text" v-model="form.middle_name"
-                                class="mt-1 block w-full border border-gray-300 rounded-md text-black shadow-sm px-3 py-2 focus:ring-blue-500 focus:border-blue-500" />
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700">Last Name</label>
-                            <input type="text" v-model="form.last_name"
-                                class="mt-1 block w-full border border-gray-300 rounded-md text-black shadow-sm px-3 py-2 focus:ring-blue-500 focus:border-blue-500" />
-
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700">Suffix</label>
-                            <input type="text" v-model="form.suffix"
-                                class="mt-1 block w-full text-black  border border-gray-300 rounded-md shadow-sm px-3 py-2 focus:ring-blue-500 focus:border-blue-500" />
-
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700">Email Address</label>
-                            <input type="email" v-model="form.email" placeholder="email@domain.com"
-                                class="mt-1 block w-full text-black  border border-gray-300 rounded-md shadow-sm px-3 py-2 focus:ring-blue-500 focus:border-blue-500" />
-                        </div>
-
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700">Purok</label>
-                                <input type="text" v-model="form.purok"
-                                    class="mt-1 block w-full border text-black  border-gray-300 rounded-md shadow-sm px-3 py-2" />
-                            </div>
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700">Barangay</label>
-                                <input type="text" v-model="form.barangay"
-                                    class="mt-1 block w-full border text-black  border-gray-300 rounded-md shadow-sm px-3 py-2" />
-                            </div>
-                        </div>
-
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700">City</label>
-                                <input type="text" v-model="form.city"
-                                    class="mt-1 text-black  block w-full border border-gray-300 rounded-md shadow-sm px-3 py-2" />
-                            </div>
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700">Province</label>
-                                <input type="text" v-model="form.province"
-                                    class="mt-1 text-black  block w-full border border-gray-300 rounded-md shadow-sm px-3 py-2" />
-                            </div>
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700">Date of Birth</label>
-                                <input type="date" v-model="form.date_of_birth"
-                                    class="mt-1 text-black  block w-full border border-gray-300 rounded-md shadow-sm px-3 py-2" />
-                            </div>
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700">Contact Number</label>
-                                <input type="text" v-model="form.contact_number"
-                                    class="mt-1 block w-full text-black  border border-gray-300 rounded-md shadow-sm px-3 py-2" />
-                            </div>
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700">Type of Certificate</label>
-                                <select v-model="form.request_type"
-                                    class="mt-1 block w-full text-black  border border-gray-300 rounded-md shadow-sm px-3 py-2">
-                                    <option value="0">Certificate</option>
-                                    <option value="1">Indigency</option>
-                                    <option value="2">Clearance</option>
-                                    <option value="3">Other</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700">Purpose of Request</label>
-                                <input type="text" v-model="form.request_purpose"
-                                    class="mt-1 block w-full text-black  border border-gray-300 rounded-md shadow-sm px-3 py-2" />
-                            </div>
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700">Civil Status</label>
-
-                                <select v-model="form.civilstatus"
-                                    class="mt-1 block w-full text-black  border border-gray-300 rounded-md shadow-sm px-3 py-2">
-                                    <option value="1">Single</option>
-                                    <option value="2">Married</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700">Month/Yrs in Barangay</label>
-                                <input type="number" v-model="form.inBryg"
-                                    class="mt-1 block w-full text-black  border border-gray-300 rounded-md shadow-sm px-3 py-2" />
-                            </div>
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700">Preferred Date of Claim </label>
-                                <input type="date" v-model="form.date_of_claim"
-                                    class="mt-1 text-black  block w-full border border-gray-300 rounded-md shadow-sm px-3 py-2" />
-                            </div>
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700">Attachment</label>
-                            <input  type="file" ref="fileInput" @change="handleFileUpload"
-                                class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm px-3 py-2" />
-                        </div>
-
-                        <div class="flex items-center space-x-2">
-                            <input id="billing" v-model="isValidateInformation" type="checkbox" class="h-4 w-4 text-blue-600 border-gray-300 rounded" />
-                            <label for="billing" class="text-sm text-gray-700">All the information that are provided
-                                are
-                                true.</label> 
-                        </div>
-                        <div class="pt-4">
-                            <button type="submit" :disabled="!isValidateInformation"
-                                :class="isValidateInformation ? 'bg-blue-600 text-white' :'bg-gray-400 text-gray-200'"
-                                class="text-white px-6 py-2 rounded-md shadow-md transition">
-                                Submit
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                    </tr>
+                </tbody>
+            </table>
         </div>
-    </form>
+    </AppLayout>
 </template>

@@ -3,12 +3,10 @@
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
+
 Route::get('/', function () {
     return Inertia::render('Welcome');
 })->name('home');
-
-Route::get('req-cert',[\App\Http\Controllers\CertController::class,'index'])->name('certificates');
-Route::post('request-cert-save',[\App\Http\Controllers\CertController::class,'store'])->name('request-form.store');
 
 Route::group(['auth', 'verified'], function(){
     
@@ -28,13 +26,11 @@ Route::group(['auth', 'verified'], function(){
     Route::post('/sample-crud/store',[\App\Http\Controllers\SampleCrudController::class,'store'])->name('sample-crud.store');
 
     
-    Route::get('/certificate-request',[\App\Http\Controllers\SampleCrudController::class,'index'])->name('certificate-request');
-    Route::get('/certificate-request/create',[\App\Http\Controllers\SampleCrudController::class,'create'])->name('certificate-request.create'); 
-    Route::get('/certificate-request/edit/{id}',[\App\Http\Controllers\SampleCrudController::class,'edit'])->name('certificate-request.edit');
-    Route::post('/certificate-request/store',[\App\Http\Controllers\SampleCrudController::class,'store'])->name('certificate-request.store');
-
+    Route::get('/CertRequest',[\App\Http\Controllers\CertRequestController::class,'index'])->name('CertRequest');
+    Route::get('/CertRequest/create',[\App\Http\Controllers\CertRequestController::class,'create'])->name('CertRequest.create'); 
+    Route::get('/CertRequest/edit/{id}',[\App\Http\Controllers\CertRequestController::class,'edit'])->name('CertRequest.edit');
+    Route::post('/CertRequest/store',[\App\Http\Controllers\CertRequestController::class,'store'])->name('CertRequest.store');
 });
-
 
 
 require __DIR__.'/settings.php';

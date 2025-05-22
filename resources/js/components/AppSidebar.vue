@@ -4,39 +4,58 @@ import NavMain from '@/components/NavMain.vue';
 import NavUser from '@/components/NavUser.vue';
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
 import { type NavItem } from '@/types';
-import { Link } from '@inertiajs/vue3';
+import { Link,usePage } from '@inertiajs/vue3';
 import { BookOpen, Folder, LayoutGrid } from 'lucide-vue-next';
 import AppLogo from './AppLogo.vue';
+import { onMounted } from 'vue';
 
-const mainNavItems: NavItem[] = [
 
-    {
-        title: 'User',
-        href: '/users',
-        icon: LayoutGrid,
-    },
-    {
-        title: 'All Requests',
-        href: 'certificate-requests',
-        icon: LayoutGrid,
-    },
- 
-     {
-        title: 'Sample Crud',
-        href: '/sample-crud',
-        icon: LayoutGrid,
-    },
+const page = usePage();
+const rootProps = page.props;
 
-];
+const role = rootProps.auth.user.role;
+const mainNavItems: NavItem[] = [];
+if (role === 'admin' || role === 2) {
+        mainNavItems.push(
+            {
+                title: 'Dashboard',
+                href: '/dashboard',
+                icon: LayoutGrid,
+            } as NavItem,
+            {
+                title: 'User',
+                href: '/users',
+                icon: LayoutGrid,
+            } as NavItem,
+            {
+                title: 'All Requests',
+                href: '/Cert-Request',
+                icon: LayoutGrid,
+            } as NavItem,
+            {
+                title: 'App Settings',
+                href: '/app-settings',
+                icon: LayoutGrid,
+            } as NavItem,
+        );
+    } else {
+        mainNavItems.push(
+            {
+                title: 'My Requests',
+                href: '/CertRequest',
+                icon: LayoutGrid,
+            } as NavItem,
+        );
+    }
+onMounted(() => {
+    
+});
+
+
 
 const footerNavItems: NavItem[] = [
     {
-        title: 'Github Repo',
-        href: 'https://github.com/laravel/vue-starter-kit',
-        icon: Folder,
-    },
-    {
-        title: 'Documentation',
+        title: 'Help',
         href: 'https://laravel.com/docs/starter-kits',
         icon: BookOpen,
     },
