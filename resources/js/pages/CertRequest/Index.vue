@@ -12,7 +12,22 @@ const breadcrumbs = [
     },   
 ];
 
-defineProps({CertRequest:Array});
+// Define the type for a CertRequest item
+interface CertRequestItem {
+    id: number;
+    first_name: string;
+    middle_name: string;
+    last_name: string;
+    purok: string;
+    contact_number: string;
+    email: string;
+    request_type: string;
+    request_purpose: string;
+    request_date: string;
+    status: string;
+}
+
+defineProps<{ CertRequest: CertRequestItem[] }>();
 
 const onEdit = (id) => {
     // Redirect to the edit page for the selected person
