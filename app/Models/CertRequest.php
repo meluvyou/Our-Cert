@@ -21,7 +21,6 @@ class CertRequest extends Model
         'contact_number',
         'request_type',
         'civilstatus',
-        'status',
         'request_purpose'
     ];
     public $timestamps = true;

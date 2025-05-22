@@ -37,22 +37,29 @@ const onEdit = (id) => {
             <table class="w-full table-auto text-left text-sm text-gray-500 dark:text-gray-400">
                 <thead class="bg-gray-50 text-xs uppercase text-gray-700 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
-                        <th class="px-6 py-3">Name</th>
-                        <th class="px-6 py-3">Address</th>
-                        <th class="px-6 py-3">Phone</th>
-                        <th class="px-6 py-3">Email</th>
-                        <th class="px-6 py-3">Request_Type</th>
-                        <th class="px-6 py-3">Request_purpose</th>
+                        <th class="px-6 py-3">First Name</th>
+                        <th class="px-6 py-3">Middle Name</th>
+                        <th class="px-6 py-3">Last Name</th>
+                        <th class="px-6 py-3">Purok</th>
+                        <th class="px-6 py-3">Contact Number</th>
+                        <th class="px-6 py-3">Request Type</th>
+                        <th class="px-6 py-3">Request Purpose</th>
+                        <th class="px-6 py-3">Request Date</th>
                         <th class="px-6 py-3">Status</th>
+                        
                     </tr>
                 </thead>
                 <tbody>
                     <tr v-for="row in CertRequest" :key="row.id" class="border-b bg-white dark:border-gray-700 dark:bg-gray-800">
-                        <td class="px-6 py-4">{{ row.name || 'N/A' }}</td>
-                        <td class="px-6 py-4">{{ row.address }}</td>
-                        <td class="px-6 py-4">{{ row.phone }}</td>
+                        <td class="px-6 py-4">{{ row.first_name }}</td>
+                        <td class="px-6 py-4">{{ row.middle_name }}</td>
+                        <td class="px-6 py-4">{{ row.last_name }}</td>
+                        <td class="px-6 py-4">{{ row.purok }}</td>
+                        <td class="px-6 py-4">{{ row.contact_number }}</td>
                         <td class="px-6 py-4">{{ row.email }}</td>
                         <td class="px-6 py-4">{{ row.request_type }}</td>
+                        <td class="px-6 py-4">{{ row.request_purpose }}</td>
+                        <td class="px-6 py-4">{{ row.request_date }}</td>
                         
                         <td class="px-6 py-4">
                             <span v-if="row.status === 'approved'" class="text-green-600">Approved</span>

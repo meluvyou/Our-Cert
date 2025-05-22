@@ -117,13 +117,6 @@ const handleFileUpload = (event: Event) => {
 
     <Head title="Register" />
     <AppLayout :breadcrumbs="breadcrumbs">
-        <div v-if="CertRequest.success" class="min-h-screen bg-gray-100 p-8">
-            <div class="max-w-4xl mx-auto bg-white shadow-md rounded-lg p-8">
-                <h2 class="text-2xl font-semibold text-gray-800 mb-2">Request Certificate</h2>
-                <p class="text-gray-500 mb-6">Your request has been submitted successfully.</p>
-                <p class="text-gray-500 mb-6">Please check your email for further instructions.</p>
-            </div>
-        </div>
 
         <form @submit.prevent="createCertRequest" v-if="!CertRequest.success">
             <div class="min-h-screen bg-dark p-8">
@@ -131,12 +124,7 @@ const handleFileUpload = (event: Event) => {
                     <h2 class="text-2xl font-semibold text-gray-800  b-2">Request Form</h2>
                     <p class="text-gray-500 mb-6">Enter your details below for your request certificate. </p>
 
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        <div class="md:col-span-3">
-                            <h3 class="text-lg font-medium text-gray-700">Personal Details</h3>
-                            <p class="text-gray-500 mb-4">Please fill in your personal information.</p>
-                        </div>
-
+                  
                         <div class="md:col-span-2 space-y-4">
                             <div>
                                 <label class="block text-sm font-medium text-gray-700">First Name</label>
@@ -174,7 +162,7 @@ const handleFileUpload = (event: Event) => {
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700">Barangay</label>
-                                    <input type="text" v-model="CertRequest.barangay"
+                                    <input type="text" disabled v-model="CertRequest.barangay"
                                         class="mt-1 block w-full border text-black  border-gray-300 rounded-md shadow-sm px-3 py-2" />
                                 </div>
                             </div>
@@ -182,12 +170,12 @@ const handleFileUpload = (event: Event) => {
                             <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700">City</label>
-                                    <input type="text" v-model="CertRequest.city"
+                                    <input type="text" disabled v-model="CertRequest.city"
                                         class="mt-1 text-black  block w-full border border-gray-300 rounded-md shadow-sm px-3 py-2" />
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700">Province</label>
-                                    <input type="text" v-model="CertRequest.province"
+                                    <input type="text" disabled v-model="CertRequest.province"
                                         class="mt-1 text-black  block w-full border border-gray-300 rounded-md shadow-sm px-3 py-2" />
                                 </div>
                                 <div>
@@ -197,7 +185,10 @@ const handleFileUpload = (event: Event) => {
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700">Contact_number</label>
-                                    <input type="text" v-model="CertRequest.contact_number"
+                                    <input type="text"
+                                     v-model="CertRequest.contact_number"
+                                     maxlength="11"
+                                     minlength="11"
                                         class="mt-1 block w-full text-black  border border-gray-300 rounded-md shadow-sm px-3 py-2" />
                                 </div>
                                 <div>
@@ -259,7 +250,6 @@ const handleFileUpload = (event: Event) => {
                                 </button>
                             </div>
                         </div>
-                    </div>
                 </div>
             </div>
         </form>
