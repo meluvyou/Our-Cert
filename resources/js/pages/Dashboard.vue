@@ -78,7 +78,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                     </div>
                 </div>
             </div>
-            <div class="overflow-hidden rounded-lg border bg-card shadow-md dark:border-slate-700 dark:bg-slate-800">
+            <!-- <div class="overflow-hidden rounded-lg border bg-card shadow-md dark:border-slate-700 dark:bg-slate-800">
                 <table class="w-full table-auto text-left text-sm text-gray-500 dark:text-gray-400">
                     <thead class="bg-gray-50 text-xs uppercase text-gray-700 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
@@ -103,7 +103,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                         </tr>
                     </tbody>
                 </table>
-            </div>
+            </div> -->
         </div>
     </AppLayout>
 </template>
