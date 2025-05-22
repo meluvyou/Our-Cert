@@ -10,6 +10,9 @@ class DashboardController extends Controller
 {
     public function index()
     {
+        if (auth()->user()->role == 1) {
+            return redirect()->route('CertRequest');
+        }
 
         // Example: Get counts from your tables
         $totalClaim = RequestCert::where('status',  1)->count();
