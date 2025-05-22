@@ -10,6 +10,8 @@ const breadcrumbs: BreadcrumbItem[] = [
         href: '/dashboard',
     },
 ];
+
+defineProps({totalClaims: Number, pendingRequests: Number, totalAdmins: Number});
 </script>
 
 <template>
@@ -22,30 +24,22 @@ const breadcrumbs: BreadcrumbItem[] = [
                 <div
                     class="relative aspect-video overflow-hidden rounded-xl border border-sidebar-border/70 dark:border-sidebar-border bg-blue-600 dark:bg-blue-700 flex items-center justify-between p-6 shadow">
                     <div>
-                        <h2 class="text-lg font-semibold text-white mb-2">Total Requests</h2>
-                        <p class="text-3xl font-bold text-white">128</p>
-                        <div class="mt-4">
-                            <span
-                                class="inline-block rounded bg-blue-100/80 px-2 py-1 text-xs font-medium text-blue-800 dark:bg-blue-900 dark:text-blue-200">+12%
-                                this month</span>
-                        </div>
+                        <h2 class="text-lg font-semibold text-white mb-2">Total Claim</h2>
+                        <p class="text-3xl font-bold text-white">{{ totalClaims }}</p>
+                       
                     </div>
-                    <img src="/images/request-card2.svg" alt="Requests" class="h-24 w-24 object-contain ml-4" />
+                    <img src="/images/bag-check-svgrepo-com.svg" alt="Requests" class="h-24 w-24 object-contain ml-4" />
                 </div>
                 <div
                     class="relative aspect-video overflow-hidden rounded-xl border border-sidebar-border/70 dark:border-sidebar-border">
                     <div
                         class="relative aspect-video overflow-hidden rounded-xl border border-sidebar-border/70 dark:border-sidebar-border bg-green-600 dark:bg-green-700 flex items-center justify-between p-6 shadow">
                         <div>
-                            <h2 class="text-lg font-semibold text-white mb-2">Total Quest</h2>
-                            <p class="text-3xl font-bold text-white">128</p>
-                            <div class="mt-4">
-                                <span
-                                    class="inline-block rounded bg-blue-100/80 px-2 py-1 text-xs font-medium text-green-800 dark:bg-green-900 dark:text-blue-200">+12%
-                                    this month</span>
-                            </div>
+                            <h2 class="text-lg font-semibold text-white mb-2">Total Pendings</h2>
+                            <p class="text-3xl font-bold text-white">{{ pendingRequests }}</p>
+                            
                         </div>
-                        <img src="/images/request-card.svg" alt="Requests" class="h-24 w-24 object-contain ml-4" />
+                        <img src="/images/time-quarter-past-svgrepo-com.svg" alt="Requests" class="h-24 w-24 object-contain ml-4" />
                     </div>
                 </div>
                 <div
@@ -54,14 +48,10 @@ const breadcrumbs: BreadcrumbItem[] = [
                         class="relative aspect-video overflow-hidden rounded-xl border border-sidebar-border/70 dark:border-sidebar-border bg-green-600 dark:bg-green-700 flex items-center justify-between p-6 shadow">
                         <div>
                             <h2 class="text-lg font-semibold text-white mb-2">Total Admin</h2>
-                            <p class="text-3xl font-bold text-white">128</p>
-                            <div class="mt-4">
-                                <span
-                                    class="inline-block rounded bg-blue-100/80 px-2 py-1 text-xs font-medium text-green-800 dark:bg-green-900 dark:text-blue-200">+12%
-                                    this month</span>
-                            </div>
+                            <p class="text-3xl font-bold text-white">{{ totalAdmins }}</p>
+                            
                         </div>
-                        <img src="/images/request-card.svg" alt="Requests" class="h-24 w-24 object-contain ml-4" />
+                        <img src="/images/user-shield-alt-1-svgrepo-com.svg" alt="Requests" class="h-24 w-24 object-contain ml-4" />
                     </div>
                 </div>
             </div>

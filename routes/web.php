@@ -12,9 +12,7 @@ Route::post('request-cert-save',[\App\Http\Controllers\CertController::class,'st
 
 Route::group(['auth', 'verified'], function(){
     
-    Route::get('dashboard', function () {
-        return Inertia::render('Dashboard');
-    })->name('dashboard');
+    Route::get('dashboard', [\App\Http\Controllers\DashboardController::class,'index'])->name('dashboard');
 
     Route::get('users',[\App\Http\Controllers\UserController::class,'index'])->name('users');
 
