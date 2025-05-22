@@ -32,7 +32,7 @@ Route::group(['auth', 'verified'], function(){
     Route::get('/CertRequest/create',[\App\Http\Controllers\CertRequestController::class,'create'])->name('CertRequest.create'); 
     Route::get('/CertRequest/edit/{id}',[\App\Http\Controllers\CertRequestController::class,'edit'])->name('CertRequest.edit');
     Route::post('/CertRequest/store',[\App\Http\Controllers\CertRequestController::class,'store'])->name('CertRequest.store');
-
+});
 
 
 require __DIR__.'/settings.php';
