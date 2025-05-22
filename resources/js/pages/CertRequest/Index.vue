@@ -41,11 +41,7 @@ const onEdit = (id) => {
                         <th class="px-6 py-3">Middle Name</th>
                         <th class="px-6 py-3">Last Name</th>
                         <th class="px-6 py-3">Purok</th>
-                        <th class="px-6 py-3">Barangay</th>
-                        <th class="px-6 py-3">City</th>
-                        <th class="px-6 py-3">Province</th>
                         <th class="px-6 py-3">Contact Number</th>
-                        <th class="px-6 py-3">Email</th>
                         <th class="px-6 py-3">Request Type</th>
                         <th class="px-6 py-3">Request Purpose</th>
                         <th class="px-6 py-3">Request Date</th>
@@ -59,10 +55,7 @@ const onEdit = (id) => {
                         <td class="px-6 py-4">{{ row.middle_name }}</td>
                         <td class="px-6 py-4">{{ row.last_name }}</td>
                         <td class="px-6 py-4">{{ row.purok }}</td>
-                         <td class="px-6 py-4">{{ row.barangay }}</td>
-                          <td class="px-6 py-4">{{ row.city }}</td>
-                          <td class="px-6 py-4">{{ row.province }}</td>
-                          <td class="px-6 py-4">{{ row.contact_number }}</td>
+                        <td class="px-6 py-4">{{ row.contact_number }}</td>
                         <td class="px-6 py-4">{{ row.email }}</td>
                         <td class="px-6 py-4">{{ row.request_type }}</td>
                         <td class="px-6 py-4">{{ row.request_purpose }}</td>
