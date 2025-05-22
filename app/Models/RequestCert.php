@@ -3,9 +3,9 @@
 
 namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
-class CertRequest extends Model
+class RequestCert extends Model
 {
-    protected $table = 'CertRequest';
+    protected $table = 'request_certs';
     protected $primaryKey = 'id';
     protected $fillable = [
         'first_name',
@@ -21,6 +21,7 @@ class CertRequest extends Model
         'contact_number',
         'request_type',
         'civilstatus',
+        'status',
         'request_purpose'
     ];
     public $timestamps = true;

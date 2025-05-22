@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('CertRequest', function (Blueprint $table) {
+        Schema::create('request_certs', function (Blueprint $table) {
 
             $table->bigIncrements('id');
             $table->string('first_name',15)->nullable();
@@ -40,6 +40,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('CertRequest');
+        Schema::dropIfExists('request_certs');
     }
 };

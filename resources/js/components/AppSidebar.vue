@@ -13,7 +13,7 @@ import { onMounted } from 'vue';
 const page = usePage();
 const rootProps = page.props;
 
-const role = rootProps.auth.user.role;
+const role = rootProps.auth.user?.role;
 const mainNavItems: NavItem[] = [];
 if (role === 'admin' || role === 2) {
         mainNavItems.push(

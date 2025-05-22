@@ -45,7 +45,7 @@ defineProps({totalClaims: Number, pendingRequests: Number, totalAdmins: Number})
                 <div
                     class="relative aspect-video overflow-hidden rounded-xl border border-sidebar-border/70 dark:border-sidebar-border">
             <div
-                        class="relative aspect-video overflow-hidden rounded-xl border border-sidebar-border/70 dark:border-sidebar-border bg-green-600 dark:bg-green-700 flex items-center justify-between p-6 shadow">
+                        class="relative aspect-video overflow-hidden rounded-xl border border-sidebar-border/70 dark:border-sidebar-border bg-red-600 dark:bg-red-700 flex items-center justify-between p-6 shadow">
                         <div>
                             <h2 class="text-lg font-semibold text-white mb-2">Total Admin</h2>
                             <p class="text-3xl font-bold text-white">{{ totalAdmins }}</p>
