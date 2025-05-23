@@ -25,6 +25,9 @@ interface CertRequestItem {
     request_purpose: string;
     request_date: string;
     status: string;
+    barangay: string;
+    city: string;
+    province: string;
 }
 
 defineProps<{ CertRequest: CertRequestItem[] }>();
