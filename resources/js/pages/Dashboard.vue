@@ -24,7 +24,7 @@ defineProps({totalClaims: Number, pendingRequests: Number, totalAdmins: Number})
                 <div
                     class="relative aspect-video overflow-hidden rounded-xl border border-sidebar-border/70 dark:border-sidebar-border bg-blue-600 dark:bg-blue-700 flex items-center justify-between p-6 shadow">
                     <div>
-                        <h2 class="text-lg font-semibold text-white mb-2">Total Claim</h2>
+                        <h2 class="text-lg font-semibold text-white mb-2">Total Released</h2>
                         <p class="text-3xl font-bold text-white">{{ totalClaims }}</p>
                        
                     </div>

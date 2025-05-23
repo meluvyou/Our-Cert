@@ -15,12 +15,12 @@ class DashboardController extends Controller
         }
 
         // Example: Get counts from your tables
-        $totalClaim = RequestCert::where('status',  1)->count();
+        $totalClaims = RequestCert::where('status',  1)->count();
         $pendingRequests = RequestCert::where('status', 0)->count();
         $totalAdmins = User::where('role', 2)->count();
 
         return Inertia::render('Dashboard', [
-            'totalClaims'=> $totalClaim,
+            'totalClaims'=> $totalClaims,
             'pendingRequests' => $pendingRequests,
             'totalAdmins' => $totalAdmins,
         ]);
