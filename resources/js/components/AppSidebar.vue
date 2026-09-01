@@ -28,6 +28,11 @@ if (role === 'admin' || role === 2) {
                 icon: LayoutGrid,
             } as NavItem,
             {
+                title: 'Sales',
+                href: '/sales',
+                icon: LayoutGrid,
+            } as NavItem,
+            {
                 title: 'All Requests',
                 href: '/Cert-Request',
                 icon: LayoutGrid,

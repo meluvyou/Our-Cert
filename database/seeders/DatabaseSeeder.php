@@ -15,11 +15,18 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-         User::create([
-            'name' => 'System Admin',
+        User::firstOrCreate([
             'email' => 'admin@gmail.com',
+        ], [
+            'name' => 'System Admin',
             'password' => Hash::make('@admin101'),
             'status' => '1',
-            'role' => '2',]);
+            'role' => '2',
+        ]);
+
+        // Seed demo sales
+        $this->call([
+            SaleSeeder::class,
+        ]);
     }
 }

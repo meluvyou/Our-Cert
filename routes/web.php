@@ -30,6 +30,14 @@ Route::group(['auth', 'verified'], function(){
     Route::get('/CertRequest/create',[\App\Http\Controllers\CertRequestController::class,'create'])->name('CertRequest.create'); 
     Route::get('/CertRequest/edit/{id}',[\App\Http\Controllers\CertRequestController::class,'edit'])->name('CertRequest.edit');
     Route::post('/CertRequest/store',[\App\Http\Controllers\CertRequestController::class,'store'])->name('CertRequest.store');
+
+    // Sales monitoring routes
+    Route::get('/sales',[\App\Http\Controllers\SaleController::class,'index'])->name('sales');
+    Route::get('/sales/create',[\App\Http\Controllers\SaleController::class,'create'])->name('sales.create');
+    Route::get('/sales/edit/{id}',[\App\Http\Controllers\SaleController::class,'edit'])->name('sales.edit');
+    Route::post('/sales/store',[\App\Http\Controllers\SaleController::class,'store'])->name('sales.store');
+    Route::post('/sales/update/{id}',[\App\Http\Controllers\SaleController::class,'update'])->name('sales.update');
+    Route::post('/sales/destroy/{id}',[\App\Http\Controllers\SaleController::class,'destroy'])->name('sales.destroy');
 });
 
 
